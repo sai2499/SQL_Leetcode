@@ -1,6 +1,4 @@
 --  Write your PostgreSQL query statement below
-select player_id, device_id
-from Activity where (player_id, event_date) in (select player_id, 
-Min(event_date) as first_login
-from Activity
-group by player_id)
+select distinct player_id, 
+FIRST_VALUE(device_id) over (partition by player_id order by event_date) as device_id
+from Activity 
