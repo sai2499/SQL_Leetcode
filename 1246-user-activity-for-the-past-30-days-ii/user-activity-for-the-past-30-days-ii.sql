@@ -1,4 +1,10 @@
 # Write your MySQL query statement below
-SELECT ifnull(ROUND(COUNT(DISTINCT session_id)/COUNT(DISTINCT user_id), 2),0.00) AS average_sessions_per_user
-FROM Activity 
-WHERE activity_date between '2019-06-28' and '2019-07-27';
+with cte as (
+    SELECT USER_ID, COUNT(DISTINCT SESSION_ID) AS SESSIONS
+    FROM ACTIVITY 
+    WHERE ACTIVITY_DATE BETWEEN '2019-06-28' AND '2019-07-27'
+    GROUP BY USER_ID
+)
+
+SELECT ROUND(IFNULL(AVG(SESSIONS), 0.00),2) AS AVERAGE_SESSIONS_PER_USER
+FROM cte
