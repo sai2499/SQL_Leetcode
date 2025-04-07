@@ -1,5 +1,5 @@
 # Write your MySQL query statement below
-select name, coalesce(sum(r.distance), 0) as travelled_distance
+select name, ifnull(sum(r.distance), 0) as travelled_distance
 from Rides r
 right join Users u
 on r.user_id = u.id
