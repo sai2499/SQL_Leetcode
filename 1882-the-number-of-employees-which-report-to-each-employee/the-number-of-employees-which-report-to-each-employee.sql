@@ -1,6 +1,6 @@
 -- Write your PostgreSQL query statement below
 with cte as(
-select distinct *, count(reports_to) over (partition by reports_to) as emp_coount, 
+select distinct reports_to, count(reports_to) over (partition by reports_to) as emp_coount, 
 round(avg(age) over (partition by reports_to)) as emp_age
 from Employees
 where reports_to is not null)
