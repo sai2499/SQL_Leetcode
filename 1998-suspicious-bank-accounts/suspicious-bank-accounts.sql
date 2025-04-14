@@ -17,4 +17,4 @@ FROM cte2 a
 JOIN cte2 b
 ON a.account_id = b.account_id
 AND cast(a.mnt_year as integer) =cast(b.mnt_year as integer)+1
-GROUP BY 1
+GROUP BY a.account_id
