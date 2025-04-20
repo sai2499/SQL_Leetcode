@@ -1,4 +1,3 @@
--- select member_id, name, coalesce(((100*sum(charged_amount))/count(visit_date)),0) as conversion_rate
 with cte as (
     select v.member_id, coalesce(((100*count(p.charged_amount))/count(v.visit_date)),0) as conversion_rate
     from Visits v
