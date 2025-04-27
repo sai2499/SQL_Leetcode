@@ -7,7 +7,8 @@ WITH cte AS (
 cte1 AS (
     SELECT v.voter, v.candidate, c.cnt
     FROM Votes v
-    JOIN cte c ON v.voter = c.voter
+    JOIN cte c 
+    USING (voter)
 ),
 cte2 AS (
     SELECT candidate, SUM(1.0 / cnt) AS total_votes
